@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Feb  4 2021 00:22:52 (32-bit)
 Copyright (c) 2002-2021 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       25/05/08 20:56:54
+Created on:       25/05/13 21:23:44
 Executable Image: /home/mukesh/Desktop/project/mini-os/build/stage2.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          00000670             0000009e
+DGROUP                          00001a7e             00000168
 
 
 
@@ -25,10 +25,11 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        00000013
-_TEXT                  CODE           AUTO           00000013        0000065d
-CONST                  DATA           DGROUP         00000670        0000008c
-CONST2                 DATA           DGROUP         000006fc        00000011
-_DATA                  DATA           DGROUP         0000070e        00000000
+_TEXT                  CODE           AUTO           00000013        00001a6a
+CONST                  DATA           DGROUP         00001a7e        00000145
+CONST2                 DATA           DGROUP         00001bc4        00000011
+_DATA                  DATA           DGROUP         00001bd6        00000008
+_BSS                   BSS            DGROUP         00001bde        00000008
 
 
                         +----------------+
@@ -44,17 +45,53 @@ Address        Symbol
 Module: /home/mukesh/Desktop/project/mini-os/build/stage2/asm/main.obj(main.asm)
 00000000       entry
 Module: /home/mukesh/Desktop/project/mini-os/build/stage2/asm/x86.obj(x86.asm)
-00000013       _x86_div64_32
-00000041       _x86_Video_WriteCharTeletype
+00000013       __U4D
+0000003a       __U4M
+00000054       _x86_div64_32
+00000082       _x86_Video_WriteCharTeletype
+00000095       _x86_Disk_Reset
+000000aa       _x86_Disk_Read
+000000e1       _x86_Disk_GetDriveParams
+Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/ctype.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/ctype.c)
+00000125+      islower_
+00000163       toupper_
+Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/disk.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/disk.c)
+000001ab       DISK_Initialize_
+00000221+      DISK_LBA2CHS_
+000002d4       DISK_ReadSectors_
+Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/fat.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/fat.c)
+00000371+      FAT_ReadBootSector_
+000003a5+      FAT_ReadFat_
+000003e9       FAT_Initialize_
+00000630+      FAT_ClusterToLba_
+00000686+      FAT_OpenEntry_
+00000850+      FAT_NextCluster_
+000008d9       FAT_Read_
+00000c3d       FAT_ReadEntry_
+00000c96       FAT_Close_
+00000d14+      FAT_FindFile_
+00000e4f       FAT_Open_
 Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/main.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/main.c)
-00000054       _cstart_
+00000fc9       _cstart_
+00001bda+      _g_data
+Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/memory.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/memory.c)
+00001178       memcpy_
+000011f0       memset_
+0000124f       memcmp_
 Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/stdio.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/stdio.c)
-000000de+      putc_
-00000105       puts_
-0000013c+      puts_f_
-00000179       _printf
-000003fc+      printf_number_
-000006fc+      _g_HexChars
+000012cc       putc_
+000012f3+      puts_
+0000132a+      puts_f_
+00001367       _printf
+000015ea+      printf_number_
+0000185e+      print_buffer_
+00001bc4+      _g_HexChars
+Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/string.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/string.c)
+000018da       strchr_
+00001935+      strcpy_
+000019a9       strlen_
+Module: /home/mukesh/Desktop/project/mini-os/build/stage2/c/utility.obj(/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/utility.c)
+000019e4+      align_
 
 
                         +---------------------+
@@ -68,17 +105,48 @@ Module          Segment               Class           Address         Size
 ======          =======               =====           =======         ====
 
 main.asm        _ENTRY                CODE           00000000         00000013
-x86.asm         _TEXT                 CODE           00000013         00000041
+x86.asm         _TEXT                 CODE           00000013         00000112
+/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/ctype.c
+                _TEXT                 CODE           00000125         00000086
+                CONST                 DATA           00001a7e         00000000
+                CONST2                DATA           00001bc4         00000000
+                _DATA                 DATA           00001bd6         00000000
+/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/disk.c
+                _TEXT                 CODE           000001ab         000001c6
+                CONST                 DATA           00001a7e         00000000
+                CONST2                DATA           00001bc4         00000000
+                _DATA                 DATA           00001bd6         00000000
+/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/fat.c
+                _TEXT                 CODE           00000371         00000c58
+                CONST                 DATA           00001a7e         00000107
+                CONST2                DATA           00001bc4         00000000
+                _DATA                 DATA           00001bd6         00000004
+                _BSS                  BSS            00001bde         00000008
 /home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/main.c
-                _TEXT                 CODE           00000054         0000008a
-                CONST                 DATA           00000670         0000008c
-                CONST2                DATA           000006fc         00000000
-                _DATA                 DATA           0000070e         00000000
+                _TEXT                 CODE           00000fc9         000001af
+                CONST                 DATA           00001b86         0000003a
+                CONST2                DATA           00001bc4         00000000
+                _DATA                 DATA           00001bda         00000004
+/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/memory.c
+                _TEXT                 CODE           00001178         00000154
+                CONST                 DATA           00001bc0         00000000
+                CONST2                DATA           00001bc4         00000000
+                _DATA                 DATA           00001bde         00000000
 /home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/stdio.c
-                _TEXT                 CODE           000000de         00000592
-                CONST                 DATA           000006fc         00000000
-                CONST2                DATA           000006fc         00000011
-                _DATA                 DATA           0000070e         00000000
+                _TEXT                 CODE           000012cc         0000060e
+                CONST                 DATA           00001bc0         00000003
+                CONST2                DATA           00001bc4         00000011
+                _DATA                 DATA           00001bde         00000000
+/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/string.c
+                _TEXT                 CODE           000018da         0000010a
+                CONST                 DATA           00001bc4         00000000
+                CONST2                DATA           00001bd6         00000000
+                _DATA                 DATA           00001bde         00000000
+/home/mukesh/Desktop/project/mini-os/src/bootloader/stage2/utility.c
+                _TEXT                 CODE           000019e4         00000099
+                CONST                 DATA           00001bc4         00000000
+                CONST2                DATA           00001bd6         00000000
+                _DATA                 DATA           00001bde         00000000
 Warning! W1014: stack segment not found
 
 
@@ -87,6 +155,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  070e (1806.)
+Memory size:  1be6 (7142.)
 Entry point address: 00000000
 Link time: 00:00.00
