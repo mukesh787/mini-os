@@ -1,8 +1,5 @@
 BUILD_DIR?=build/
 ASM?=nasm
-CC16=/usr/bin/watcom/binl/wcc
-LD16=/usr/bin/watcom/binl/wlink
-
 
 .PHONY: all kernel clean
 

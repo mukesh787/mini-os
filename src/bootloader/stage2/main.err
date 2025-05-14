@@ -1,5 +1,0 @@
-stdint.h(19): Warning! W138: No newline at end of file
-stdio.h(8): Warning! W138: No newline at end of file
-disk.h(13): Warning! W138: No newline at end of file
-fat.h(48): Warning! W138: No newline at end of file
-main.c(55): Warning! W138: No newline at end of file
